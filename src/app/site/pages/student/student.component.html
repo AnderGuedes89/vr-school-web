@@ -1,1 +1,22 @@
-<p>student works!</p>
+<div class="container">
+    <h2>Alunos</h2>
+</div>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of listStudents">
+                <td>{{ student.name }} </td>
+                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fas fa-times-circle"></i></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
