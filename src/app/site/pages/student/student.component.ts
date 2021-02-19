@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class StudentComponent implements OnInit {
   @ViewChild('exampleModal', { static: true }) exampleModal: any;
+  @ViewChild('newFeatureModal', { static: true }) newFeatureModal: any;
 
   public listStudents: any;
   public student: any;
@@ -32,7 +33,6 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
     this.studentService.getAllStudents().subscribe(response => {
       this.listStudents = response
-      console.log(this.listStudents)
     });
   }
 
@@ -41,8 +41,8 @@ export class StudentComponent implements OnInit {
     if (this.form.valid) {
       var request = this.form.value;
       this.studentService.addStudent(request).subscribe((response) => {
-        console.log(request);
         location.reload();
+        this.clearForm();
       })
     }
   }
@@ -53,7 +53,6 @@ export class StudentComponent implements OnInit {
       this.form.controls.id.setValue(this.student.id);
       this.form.controls['id'].disable();
       this.form.controls.name.setValue(this.student.name);
-      console.log(this.student)
       this.openModal()
     });
   }
@@ -68,10 +67,19 @@ export class StudentComponent implements OnInit {
       var request = this.form.value;
       var id = this.form.controls.id.value
       this.studentService.updateStudent(request, id).subscribe((response) => {
-        console.log(request);
         location.reload();
+        this.clearForm();
       })
     }
   }
+
+  public clearForm() {
+    this.form.reset()
+  }
+
+  public newFeature() {
+    this.modalService.open(this.newFeatureModal, { size: 'sm', backdrop: 'static' })
+  }
+
 
 }

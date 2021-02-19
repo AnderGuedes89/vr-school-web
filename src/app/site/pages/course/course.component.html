@@ -22,7 +22,7 @@
                 <td>{{ course.description }} </td>
                 <td>{{ course.menu }}</td>
                 <td (click)="getCourseById( course.id );"><i class="fas fa-edit btn-actions"></i></td>
-                <td><i class="fas fa-times-circle"></i></td>
+                <td (click)="newFeature();"><i class="fas fa-times-circle btn-actions"></i></td>
             </tr>
         </tbody>
     </table>
@@ -54,7 +54,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="saveNewCourse();">Salvar</button>
+                <button type="button" class="btn btn-primary btn-new" (click)="saveNewCourse();">Salvar</button>
             </div>
         </div>
     </div>
@@ -86,6 +86,23 @@
         </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Editar</button>
+        <button type="button" class="btn btn-primary btn-new" (click)="newFeature();">Editar</button>
+    </div>
+</ng-template>
+
+<ng-template #newFeatureModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" ngbAutofocus>Novo Recurso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss();">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group col-12">
+            <span>Recurso em desenvolvimento</span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-new" (click)="modal.dismiss();">OK</button>
     </div>
 </ng-template>

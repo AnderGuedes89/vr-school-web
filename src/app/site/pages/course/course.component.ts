@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CourseComponent implements OnInit {
   @ViewChild('exampleModal', { static: true }) exampleModal: any;
+  @ViewChild('newFeatureModal', { static: true }) newFeatureModal: any;
 
   public listCourses: any;
   public course: any;
@@ -36,7 +37,6 @@ export class CourseComponent implements OnInit {
   ngOnInit(): void {
     this.courseService.getAllCourses().subscribe(response => {
       this.listCourses = response
-      console.log(this.listCourses)
     });
   }
 
@@ -45,7 +45,6 @@ export class CourseComponent implements OnInit {
     if (this.form.valid) {
       var request = this.form.value;
       this.courseService.addCourse(request).subscribe((response) => {
-        console.log(request);
         location.reload();
       })
     }
@@ -58,13 +57,16 @@ export class CourseComponent implements OnInit {
       this.form.controls['id'].disable();
       this.form.controls.description.setValue(this.course.description);
       this.form.controls.menu.setValue(this.course.menu);
-      console.log(this.course)
       this.openModal()
     });
   }
 
   public openModal(): void {
     this.modalService.open(this.exampleModal, { size: 'xl', backdrop: 'static' })
+  }
+
+  public newFeature() {
+    this.modalService.open(this.newFeatureModal, { size: 'sm', backdrop: 'static' })
   }
 
 }
