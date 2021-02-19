@@ -1,0 +1,19 @@
+.header {
+    background-image: url(../../../../assets/images/image-header.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: black;
+    height: 100vh;
+}
+
+.logo-header {
+    font-size: 7rem;
+    color: chocolate;
+    font-family: "Kaushan Script", cursive;
+    letter-spacing: 2.5px;
+    padding-top: 11.5rem;
+    display: flex;
+    justify-content: center;
+}
