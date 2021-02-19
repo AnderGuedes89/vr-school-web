@@ -1,6 +1,9 @@
 <app-navbar></app-navbar>
 
 <div class="container">
+    <button type="button" class="btn btn-primary btn-new" data-toggle="modal" data-target="#exampleModal">
+        <i class="fas fa-plus-circle"></i>
+    </button>
     <h2 class="page-title">Cursos</h2>
 </div>
 
@@ -8,8 +11,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nome</th>
                 <th>Descrição</th>
+                <th>Ementa</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -23,4 +26,36 @@
             </tr>
         </tbody>
     </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Novo Curso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="form">
+                    <div class="form-group d-flex flex-lg-wrap">
+                        <div class="form-group col-6">
+                            <label for="description">Descrição</label>
+                            <input type="text" class="form-control" placeholder="Descrição"
+                                formControlName="description">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="nebu">Ementa</label>
+                            <input type="text" class="form-control" placeholder="Ementa" formControlName="menu">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="saveNewCourse();">Salvar</button>
+            </div>
+        </div>
+    </div>
 </div>
