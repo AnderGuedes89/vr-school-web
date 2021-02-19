@@ -15,8 +15,11 @@ export class StudentService {
   }
 
   public addStudent(student: Student) {
-    debugger
     return this.http.post(environment.baseApiUrl + 'students', student);
+  }
+
+  public getStudentById(id: number) {
+    return this.http.get(environment.baseApiUrl + 'students/' + id);
   }
 
 }

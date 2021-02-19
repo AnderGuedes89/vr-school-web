@@ -15,8 +15,11 @@ export class CourseService {
   }
 
   public addCourse(course: Course) {
-    debugger
     return this.http.post(environment.baseApiUrl + 'courses', course);
+  }
+
+  public getCourseById(id: number) {
+    return this.http.get(environment.baseApiUrl + 'courses/' + id);
   }
 
 }

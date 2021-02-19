@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../services/course.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-course',
@@ -8,9 +9,12 @@ import { CourseService } from '../../services/course.service';
   styleUrls: ['./course.component.scss']
 })
 export class CourseComponent implements OnInit {
+  @ViewChild('exampleModal', { static: true }) exampleModal: any;
 
   public listCourses: any;
+  public course: any;
   public form: FormGroup;
+  public id = this.fb.control('');
   public description = this.fb.control('', {
     validators: [Validators.maxLength(100)]
   });
@@ -18,8 +22,12 @@ export class CourseComponent implements OnInit {
     validators: [Validators.maxLength(100)]
   });
 
-  constructor(public courseService: CourseService, private fb: FormBuilder) {
+  constructor(public courseService: CourseService,
+    private fb: FormBuilder,
+    private modalService: NgbModal
+  ) {
     this.form = this.fb.group({
+      id: this.id,
       description: this.description,
       menu: this.menu,
     });
@@ -41,6 +49,21 @@ export class CourseComponent implements OnInit {
         location.reload();
       })
     }
+  }
+
+  public getCourseById(id: number) {
+    this.courseService.getCourseById(id).subscribe(response => {
+      this.course = response
+      this.form.controls.id.setValue(this.course.id);
+      this.form.controls.description.setValue(this.course.description);
+      this.form.controls.menu.setValue(this.course.menu);
+      console.log(this.course)
+      this.openModal()
+    });
+  }
+
+  public openModal(): void {
+    this.modalService.open(this.exampleModal, { size: 'xl', backdrop: 'static' })
   }
 
 }
