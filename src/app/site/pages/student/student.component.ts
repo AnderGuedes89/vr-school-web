@@ -51,6 +51,7 @@ export class StudentComponent implements OnInit {
     this.studentService.getStudentById(id).subscribe(response => {
       this.student = response
       this.form.controls.id.setValue(this.student.id);
+      this.form.controls['id'].disable();
       this.form.controls.name.setValue(this.student.name);
       console.log(this.student)
       this.openModal()

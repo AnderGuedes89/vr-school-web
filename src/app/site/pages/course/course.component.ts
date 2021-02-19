@@ -55,6 +55,7 @@ export class CourseComponent implements OnInit {
     this.courseService.getCourseById(id).subscribe(response => {
       this.course = response
       this.form.controls.id.setValue(this.course.id);
+      this.form.controls['id'].disable();
       this.form.controls.description.setValue(this.course.description);
       this.form.controls.menu.setValue(this.course.menu);
       console.log(this.course)
