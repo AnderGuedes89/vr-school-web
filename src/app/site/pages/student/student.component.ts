@@ -62,4 +62,16 @@ export class StudentComponent implements OnInit {
     this.modalService.open(this.exampleModal, { size: 'xl', backdrop: 'static' })
   }
 
+  public updateStudent() {
+    debugger
+    if (this.form.valid) {
+      var request = this.form.value;
+      var id = this.form.controls.id.value
+      this.studentService.updateStudent(request, id).subscribe((response) => {
+        console.log(request);
+        location.reload();
+      })
+    }
+  }
+
 }

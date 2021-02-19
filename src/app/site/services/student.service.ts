@@ -22,4 +22,8 @@ export class StudentService {
     return this.http.get(environment.baseApiUrl + 'students/' + id);
   }
 
+  public updateStudent(student: Student, id: number) {
+    return this.http.put(environment.baseApiUrl + 'students/' + id, student);
+  }
+
 }
